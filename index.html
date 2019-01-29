@@ -8,27 +8,32 @@
   <title>Document</title>
 </head>
 <body>
-  <section class='form'>
-    <header>
-      <button class="button-close">x</button>
+  <section class='ext'>
+    <header class='ext-header'>
+      <button class="ext-header__btn-close">x</button>
     </header>
-      <nav>
-        <ul class='tabs'>
-          <li class="tabs__tab">Вкладка1</li>
-          <li class="tabs__tab">Вкладка2</li>
-          <li class="tabs__add">+</li>
-        </ul>
-      </nav>
-      <article class='article'>
-        <input type="text" class="article__input" palceholder="Название статьи">
-        <input type="text" class="article__input" palceholder="Название статьи">
-        <textarea class="article__textarea" placeholder="Содержимое статьи"></textarea>
-        <input type="text" class="article__source" placeholder="площадка">
-      </article>
-      <section class="buttons">
-        <button class="buttons__button">Сохранить</button>
-        <button class="buttons__button">Отправить все</button>
+    <nav class='tabs'>
+      <ul class='tabs__ul'>
+        <li id='extTab-1' class="tabs__ul-tab active">Вкладка1</li>
+        <li class="tabs__ul-add">+</li>
+      </ul>
+    </nav>
+    <article id='extArticle-1' class='article active'>
+      <div class="article__id">#1</div>
+      <section class='article-fields'>
+        <input type="text" class="article-fields__input" placeholder="Название статьи">
+        <input type="text" class="article-fields__input" placeholder="meta-title">
+        <input type="text" class="article-fields__input" placeholder="meta-description">
+        <textarea class="article-fields__textarea" placeholder="Содержимое статьи"></textarea>
+        <input type="text" class="article-fields__source" placeholder="Площадка">
       </section>
+      <div class="article-button">
+        <button class="article-button__save">Сохранить статью</button>
+      </div>
+    </article>
+    <div class="ext-button">
+      <button class="ext-button__button">Отправить все</button>
+    </div>
   </section>
 </body>
 <script src='index.js'></script>
