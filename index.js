@@ -9,8 +9,15 @@ var createTab = () => {
   // создание таба
   var tab = document.createElement('li');
   tab.classList.add('tabs__ul-tab');
-  tab.innerHTML = 'Новая вкладка';
   ul.insertBefore(tab, addBtn);
+  var tabText = document.createElement('div');
+  tabText.classList.add('tabs__ul-tab-tab');
+  tabText.innerHTML = 'Новая вкладка';
+  tab.appendChild(tabText);
+  var tabClose = document.createElement('div');
+  tabClose.classList.add('tabs__ul-tab-close');
+  tabClose.innerHTML = 'x';
+  tab.appendChild(tabClose);
 }
 // /создание таба
 
@@ -54,12 +61,11 @@ var addId = () => {
   articleId[tabsLength - 1].innerHTML = '#' + tabsLength;
   // /добавляем порядковый номер статьи
 }
-
 // /добавляем Id
 
 // делаем новый таб активным
 var lastTabActive = () => {
-  var allTabs = document.querySelectorAll('.tabs__ul-tab');
+  var allTabs = document.querySelectorAll('.tabs__ul-tab-tab');
   var allArticles = document.querySelectorAll('.article');
   for (var i = 0; i < allTabs.length; i++) {
     allTabs[i].classList.remove('active');
@@ -72,10 +78,10 @@ var lastTabActive = () => {
 
 // переключение активных табов
 var changeActive = (e) => {
-  var tabItem = document.querySelectorAll('.tabs__ul-tab');
+  var tabItem = document.querySelectorAll('.tabs__ul-tab-tab');
   var article = document.querySelectorAll('.article');
   var target = e.target;
-  if (!target.classList.contains('tabs__ul-tab')) return ;
+  if (!target.classList.contains('tabs__ul-tab-tab')) return ;
   for (var i = 0; i < tabItem.length; i++) {
     if (target == tabItem[i]) {
       for (var q = 0; q < tabItem.length; q++) {
