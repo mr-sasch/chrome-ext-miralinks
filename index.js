@@ -42,26 +42,40 @@ var createArticle = () => {
 }
 // /создание новой статьи
 
-// добавляем Id
+var counterId = 0;
+var arrayId = [];
 var addId = () => {
-  // добавляем Id к табу
-  var tab = document.querySelectorAll('.tabs__ul-tab');
-  var tabsLength = tab.length;
-  tab[tabsLength-1].setAttribute('id', 'extTab-' + tabsLength);
-  // /добавляем Id к табу
+  var tabsId = document.querySelectorAll('.tabs__ul-tab');
+  var tabsTtl = document.querySelectorAll('.tabs__ul-tab-tab');
 
-  // добавляем Id к статье
-  var article = document.querySelectorAll('.article');
-  article[tabsLength-1].setAttribute('id', 'extArticle-' + tabsLength);
-  // /добавляем Id к статье
+  var articleId = document.querySelectorAll('.article');
+  var articleIdTtl = document.querySelectorAll('.article__id');
 
-  // добавляем порядковый номер статьи
-  var articleId = document.querySelectorAll('.article__id');
-  console.log(tabsLength);
-  articleId[tabsLength - 1].innerHTML = '#' + tabsLength;
-  // /добавляем порядковый номер статьи
+  counterId++;
+  arrayId.push(counterId);
+
+//
+  массив номеров айдишников табов
+
+  при удалении таба, массив обновляется:
+  1 найти в айдишнике порядковый номер;
+  findNumberInId();
+  2 обновить массив ноемеров
+  arrayIdUpdate();
+
+  при добавлении таба срабатывает цикл:
+  предлагается номер 1. если текущий номер есть, предлагается номер + 1
+  doesIdExist();
+
+  когда номер утвержден, он добавляется в четыре айдишника
+  addIdToBlocks();
+//
+
 }
-// /добавляем Id
+
+
+
+
 
 // делаем новый таб активным
 var lastTabActive = () => {
@@ -99,13 +113,11 @@ var changeActive = (e) => {
 // удаление таба
 var deleteTab = (e) => {
   var target = e.target;
-  var deleteTabBtn = document.querySelectorAll('.tabs__ul-tab:after');
-  console.log(deleteTabBtn.length);
+  var deleteTabBtn = document.querySelectorAll('.tabs__ul-tab-close');
   var tab = document.querySelectorAll('.tabs__ul-tab');
   var article = document.querySelectorAll('.article');
   for (var i = 0; i < deleteTabBtn.length; i++) {
     if (target == deleteTabBtn[i]) {
-      console.log(tab[i]);
       tab[i].remove();
       article[i].remove();
       break;
