@@ -85,12 +85,14 @@ var addIdsToNewElements = (number) => {
     // /добавляем айдишники элементам
 
     // обновляем массив с номерами
-!* var numbersArrayUpdate = () => {
+var numbersArrayUpdate = () => {
   var tabsTitle = document.querySelectorAll('.tabs__ul-tab-tab');
   var arrayId = [];
-  for (var i = 0; tabsTitle.length; i++) {
-    var number = tabsTitle[i].String().split('').splice(0, 1).join('');
+  for (var i = 0; i < tabsTitle.length; i++) {
+    var number = tabsTitle[i].innerHTML.split('').splice(1).join('');
+    arrayId.push(number);
   }
+  console.log(arrayId);
 }
 
     // /обновляем массив с номерами
