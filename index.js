@@ -42,36 +42,94 @@ var createArticle = () => {
 }
 // /создание новой статьи
 
-var counterId = 0;
-var arrayId = [];
-var addId = () => {
+// добавление Айдишников
+var arrayIds = [];
+var numberForId = 0;
+
+  // функции
+    // предлагаем номер, которого еще нет в массиве
+var proposeNumber = () => {
+  var elements = document.querySelectorAll('.tabs__ul-tab');
+  for (var number = 0; number < elements.length; number++) {
+    if (doesNumberExist(arrayIds, number) === false) {
+      return number;
+    }
+  }
+  return number;
+}
+    // /предлагаем номер, которого еще нет в массиве
+
+    // проверяем, есть ли номер в массиве
+var doesNumberExist = (arrayIds, number) => {
+  if (arrayIds.indexOf(number) === -1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+    // /проверяем, есть ли номер в массиве
+
+    // добавляем айдишники элементам
+var addIdsToNewElements = (number) => {
   var tabsId = document.querySelectorAll('.tabs__ul-tab');
-  var tabsTtl = document.querySelectorAll('.tabs__ul-tab-tab');
-
+  var tabsTitle = document.querySelectorAll('.tabs__ul-tab-tab');
   var articleId = document.querySelectorAll('.article');
-  var articleIdTtl = document.querySelectorAll('.article__id');
+  var articleTitle = document.querySelectorAll('.article__id');
 
-  counterId++;
-  arrayId.push(counterId);
+  var lastElement = tabsId.length - 1;
+  tabsId[lastElement].setAttribute('id', 'extTab-' + number);
+  tabsTitle[lastElement].innerHTML = '#' + number;
+  articleId[lastElement].setAttribute('id', 'extArticle-' + number);
+  articleTitle[lastElement].innerHTML = '#' + number + '. ';
+}
+    // /добавляем айдишники элементам
 
+    // обновляем массив с номерами
+!* var numbersArrayUpdate = () => {
+  var tabsTitle = document.querySelectorAll('.tabs__ul-tab-tab');
+  var arrayId = [];
+  for (var i = 0; tabsTitle.length; i++) {
+    var number = tabsTitle[i].String().split('').splice(0, 1).join('');
+  }
+}
+
+    // /обновляем массив с номерами
+
+
+  // /функции
+
+var addId = () => {
+  var number = proposeNumber();
+  addIdsToNewElements(number);
+  numbersArrayUpdate();
+
+
+
+
+// //
+// есть массив номеров элементов
+// добавление:
+// предлагается номер 1
+// если уже есть в массиве - предлагается следующий
+// если его еще нет, принимается. и на его основе формируются айдишники
+// обновляется массив номеров()
 //
-  массив номеров айдишников табов
-
-  при удалении таба, массив обновляется:
-  1 найти в айдишнике порядковый номер;
-  findNumberInId();
-  2 обновить массив ноемеров
-  arrayIdUpdate();
-
-  при добавлении таба срабатывает цикл:
-  предлагается номер 1. если текущий номер есть, предлагается номер + 1
-  doesIdExist();
-
-  когда номер утвержден, он добавляется в четыре айдишника
-  addIdToBlocks();
+// удаление:
+// удаляется элемент
+// обновляется массив номеров()
 //
+// функции:
+// addId()
+//   proposeNumber()
+//     doesNumberExist(number) рекурсия
+//       return number;
+//   // numbersArrayUpdate(arrayId)
+//     return arrayId;
+//   addIdsToNewElements(number)
+// //
 
 }
+// /добавление Айдишников
 
 
 
@@ -123,6 +181,7 @@ var deleteTab = (e) => {
       break;
     }
   }
+  // numbersArrayUpdate(); // обновляем массив номеров элементов
 }
 
 // /удаление таба
@@ -137,8 +196,8 @@ var deleteTab = (e) => {
 addBtn.onclick = () => {
   createTab();
   createArticle();
-  addId();
   lastTabActive();
+  addId();
 }
 // /Добавление таба и статьи
 
